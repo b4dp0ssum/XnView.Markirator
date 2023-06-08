@@ -4,9 +4,9 @@ namespace XnView.Markirator.App.Common.UseCases;
 
 internal static class ActionsHandlingExtensions
 {
-    public static async Task HandleAction(
+    public static void HandleAction(
         IOutputWriter outputWriter,
-        Func<Task> action,
+        Action action,
         string actionName,
         bool isUseCase = false)
     {
@@ -19,7 +19,7 @@ internal static class ActionsHandlingExtensions
 
         try
         {
-            await action();
+            action();
         }
         catch (Exception ex)
         {

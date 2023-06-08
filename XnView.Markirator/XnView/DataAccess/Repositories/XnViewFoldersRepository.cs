@@ -14,10 +14,10 @@ internal class XnViewFoldersRepository : IXnViewFoldersRepository
         _db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
-    public async Task<XnViewFolder[]> Find(IEnumerable<string> filePathList)
+    public XnViewFolder[] Find(IEnumerable<string> filePathList)
     {
-        return await _db.XnViewFolders
+        return _db.XnViewFolders
             .Where(x => filePathList.Contains(x.FolderPath))
-            .ToArrayAsync();
+            .ToArray();
     }
 }

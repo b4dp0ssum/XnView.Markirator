@@ -4,5 +4,5 @@ namespace XnView.Markirator.App.UseCases.EvaluateTags.Tools.Interfaces;
 
 internal interface IXnViewFoldersFiller
 {
-    Task FillFolders(IEnumerable<AssignImageTagsInfo> fileInfoArr);
+    void FillFolders(IEnumerable<AssignImageTagsInfo> fileInfoArr);
 }

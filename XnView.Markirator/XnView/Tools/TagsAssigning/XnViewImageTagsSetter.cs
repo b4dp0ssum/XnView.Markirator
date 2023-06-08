@@ -20,20 +20,20 @@ internal class XnViewImageTagsSetter : IXnViewImageTagsSetter
         _db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
-    public async Task SetTags(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    public void SetTags(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
-        await ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
-            async () => await Action(fileInfoArr),
+            () => Action(fileInfoArr),
             "Assignment of categories");
     }
 
-    private async Task Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    private void Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
         int unprocessedImagesCounter = 0;
 
         var allTagLinksToCreate = new List<XnViewImageTag>();
-        var existedTagsDict = await BuildExistedTagsDictionary(fileInfoArr);
+        var existedTagsDict = BuildExistedTagsDictionary(fileInfoArr);
 
         foreach (var fileInfo in fileInfoArr)
         {
@@ -55,22 +55,22 @@ internal class XnViewImageTagsSetter : IXnViewImageTagsSetter
             allTagLinksToCreate.AddRange(tagLinksToCreate);
         }
 
-        await _db.BulkCopyAsync(allTagLinksToCreate);
+        _db.BulkCopy(allTagLinksToCreate);
 
         _outputWriter.Writeline($"Number of unprocessed images: {unprocessedImagesCounter}");
         _outputWriter.Writeline($"Total categories assigned: {allTagLinksToCreate.Count}");
     }
 
-    private async Task<Dictionary<int, HashSet<int>>> BuildExistedTagsDictionary(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    private Dictionary<int, HashSet<int>> BuildExistedTagsDictionary(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
         var xnViewimageIds = fileInfoArr
             .Where(x => x.XnViewImage is not null)
             .Select(x => x.XnViewImage!.Id)
             .ToHashSet();
 
-        var xnViewImageTagLinks = await _db.XnViewImageTags
+        var xnViewImageTagLinks = _db.XnViewImageTags
             .Where(x => xnViewimageIds.Contains(x.ImageId))
-            .ToArrayAsync();
+            .ToArray();
 
         return xnViewImageTagLinks
             .GroupBy(x => x.ImageId)

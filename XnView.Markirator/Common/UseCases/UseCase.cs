@@ -16,17 +16,17 @@ internal abstract class UseCase<TInput, TResult> : IUseCase<TInput, TResult>
         _outputWriter = outputWriter ?? throw new ArgumentNullException(nameof(outputWriter));
     }
 
-    public async Task<TResult> Execute(TInput input)
+    public TResult Execute(TInput input)
     {
         TResult? result = default;
 
-        await ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
-            async () => result = await Handle(input),
+            () => result = Handle(input),
             Name);
 
         return result!;
     }
 
-    protected abstract Task<TResult> Handle(TInput request);
+    protected abstract TResult Handle(TInput request);
 }

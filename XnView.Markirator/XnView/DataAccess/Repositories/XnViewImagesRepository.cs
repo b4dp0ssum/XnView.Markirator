@@ -14,10 +14,10 @@ internal class XnViewImagesRepository : IXnViewImagesRepository
         _db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
-    public async Task<XnViewImage[]> Find(IEnumerable<int> xnViewFolderIds)
+    public XnViewImage[] Find(IEnumerable<int> xnViewFolderIds)
     {
-        return await _db.XnViewImages
+        return _db.XnViewImages
             .Where(x => xnViewFolderIds.Contains(x.FolderId))
-            .ToArrayAsync();
+            .ToArray();
     }
 }

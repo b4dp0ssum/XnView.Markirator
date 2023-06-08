@@ -9,5 +9,5 @@ namespace XnView.Markirator.App.XnView.Tools.TagsActualization;
 /// </summary>
 internal interface IXnViewTagsActualizer
 {
-    Task<XnViewTagsDictionary> UpdateAndLoadTags(IEnumerable<ImageTagsInfo> fileInfoArr);
+    XnViewTagsDictionary UpdateAndLoadTags(IEnumerable<ImageTagsInfo> fileInfoArr);
 }

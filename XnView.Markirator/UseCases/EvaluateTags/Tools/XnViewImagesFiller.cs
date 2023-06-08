@@ -19,22 +19,22 @@ internal class XnViewImagesFiller : IXnViewImagesFiller
         _xnViewImagesRepository = xnViewImagesRepository ?? throw new ArgumentNullException(nameof(xnViewImagesRepository));
     }
 
-    public Task FillImages(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    public void FillImages(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
-        return ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
             () => Action(fileInfoArr),
             "Fill XnView images info");
     }
 
-    private async Task Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    private void Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
         int unprocessedImagesCounter = 0;
 
         var xnViewFolderIds = fileInfoArr.Select(x => x.XnViewFolder?.Id ?? 0).ToHashSet();
 
         // Find all the necessary records from the Images table in XnView
-        var images = await _xnViewImagesRepository.Find(xnViewFolderIds);
+        var images = _xnViewImagesRepository.Find(xnViewFolderIds);
 
         var groupedXnViewImages = images
             .GroupBy(x => x.FolderId)

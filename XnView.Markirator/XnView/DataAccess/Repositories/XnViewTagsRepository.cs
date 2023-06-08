@@ -14,39 +14,39 @@ internal class XnViewTagsRepository : IXnViewTagsRepository
         _db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
-    public async Task<XnViewTag?> Find(string label, int parentId)
+    public XnViewTag? Find(string label, int parentId)
     {
-        return await _db.XnViewTags
+        return _db.XnViewTags
             .Where(x => x.ParentId == parentId)
             .Where(x => x.Label == label)
-            .FirstOrDefaultAsync();
+            .FirstOrDefault();
     }
 
-    public async Task<XnViewTag[]> Find(IEnumerable<string> labels, int parentId)
+    public XnViewTag[] Find(IEnumerable<string> labels, int parentId)
     {
-        return await _db.XnViewTags
+        return _db.XnViewTags
             .Where(x => x.ParentId == parentId)
             .Where(x => labels.Contains(x.Label ?? string.Empty))
-            .ToArrayAsync();
+            .ToArray();
     }
 
-    public async Task<int> GetMaxGroupPosition(int parentId)
+    public int GetMaxGroupPosition(int parentId)
     {
-        int? maxi = await _db.XnViewTags
+        int? maxi = _db.XnViewTags
             .Where(x => x.ParentId == parentId)
             .Select(x => (int?)x.TagGroupId)
-            .MaxAsync();
+            .Max();
 
         return maxi ?? 0;
     }
 
-    public async Task Create(XnViewTag newTag)
+    public void Create(XnViewTag newTag)
     {
-        newTag.Id = await _db.InsertWithInt32IdentityAsync(newTag);
+        newTag.Id = _db.InsertWithInt32Identity(newTag);
     }
 
-    public async Task InsertAll(IEnumerable<XnViewTag> newTags)
+    public void InsertAll(IEnumerable<XnViewTag> newTags)
     {
-        await _db.BulkCopyAsync(newTags);
+        _db.BulkCopy(newTags);
     }
 }

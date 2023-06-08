@@ -38,24 +38,24 @@ internal abstract class BaseAssignTags_UseCase<TInput> : UseCase<TInput, ResultI
         _xnViewImageTagsSetter = xnViewImageTagsSetter ?? throw new ArgumentNullException(nameof(xnViewImageTagsSetter));
     }
 
-    protected override async Task<ResultInfo> Handle(TInput input)
+    protected override ResultInfo Handle(TInput input)
     {
-        var imageTagsInfoArr = await LoadImageTagsInfo(input);
+        var imageTagsInfoArr = LoadImageTagsInfo(input);
 
         var assignImageTagsInfoArr = imageTagsInfoArr
             .Select(x => AssignImageTagsInfo.GetInstance(x, _xnViewSettings.ImagesCatalogPath))
             .ToArray();
 
-        var tagsDict = await _xnViewTagsActualizer.UpdateAndLoadTags(imageTagsInfoArr);
+        var tagsDict = _xnViewTagsActualizer.UpdateAndLoadTags(imageTagsInfoArr);
 
-        await _xnViewFoldersFiller.FillFolders(assignImageTagsInfoArr);
-        await _xnViewImagesFiller.FillImages(assignImageTagsInfoArr);
+        _xnViewFoldersFiller.FillFolders(assignImageTagsInfoArr);
+        _xnViewImagesFiller.FillImages(assignImageTagsInfoArr);
         _requiredXnViewTagsFiller.FillRequiredXnViewTags(assignImageTagsInfoArr, tagsDict);
 
-        await _xnViewImageTagsSetter.SetTags(assignImageTagsInfoArr);
+        _xnViewImageTagsSetter.SetTags(assignImageTagsInfoArr);
 
         return new ResultInfo();
     }
 
-    protected abstract Task<ImageTagsInfo[]> LoadImageTagsInfo(TInput input);
+    protected abstract ImageTagsInfo[] LoadImageTagsInfo(TInput input);
 }

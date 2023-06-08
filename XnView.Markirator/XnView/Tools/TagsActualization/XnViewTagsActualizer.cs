@@ -19,19 +19,19 @@ internal class XnViewTagsActualizer : IXnViewTagsActualizer
         _tagsRepo = tagsRepo ?? throw new ArgumentNullException(nameof(tagsRepo));
     }
 
-    public async Task<XnViewTagsDictionary> UpdateAndLoadTags(IEnumerable<ImageTagsInfo> fileInfoArr)
+    public XnViewTagsDictionary UpdateAndLoadTags(IEnumerable<ImageTagsInfo> fileInfoArr)
     {
         XnViewTagsDictionary? result = null;
 
-        await ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
-            async () => result = await Action(fileInfoArr),
+            () => result = Action(fileInfoArr),
             "Updating XnView categories");
 
         return result!;
     }
 
-    private async Task<XnViewTagsDictionary> Action(IEnumerable<ImageTagsInfo> fileInfoArr)
+    private XnViewTagsDictionary Action(IEnumerable<ImageTagsInfo> fileInfoArr)
     {
         var result = new XnViewTagsDictionary();
 
@@ -39,7 +39,7 @@ internal class XnViewTagsActualizer : IXnViewTagsActualizer
         _outputWriter.Writeline($"Total number of categories to update: {newTags.Count}");
 
         // Find the root tag
-        var rootBooruTag = await _tagsRepo.Find(TagsConstants.RootTagLabel, TagsConstants.RootTagsParentId);
+        var rootBooruTag = _tagsRepo.Find(TagsConstants.RootTagLabel, TagsConstants.RootTagsParentId);
 
         // If root tag does not exist in the database, let's create it
         if (rootBooruTag is null)
@@ -50,15 +50,15 @@ internal class XnViewTagsActualizer : IXnViewTagsActualizer
                 ParentId = TagsConstants.RootTagsParentId,
                 TagGroupId = 0,
             };
-            await _tagsRepo.Create(rootBooruTag);
+            _tagsRepo.Create(rootBooruTag);
             _outputWriter.Writeline("A root category was created");
         }
 
         // Load existing tags from the database that overlap with our set of new tags
-        var existedTags = await _tagsRepo.Find(newTags, rootBooruTag.Id);
+        var existedTags = _tagsRepo.Find(newTags, rootBooruTag.Id);
         var exitedTagsLabels = existedTags.Select(x => x.Label).ToHashSet();
 
-        int maxi = await _tagsRepo.GetMaxGroupPosition(rootBooruTag.Id);
+        int maxi = _tagsRepo.GetMaxGroupPosition(rootBooruTag.Id);
 
         var tagsToCreate = newTags
             .Except(exitedTagsLabels)
@@ -67,10 +67,10 @@ internal class XnViewTagsActualizer : IXnViewTagsActualizer
 
         _outputWriter.Writeline($"Number of missing categories: {tagsToCreate.Length}");
 
-        await _tagsRepo.InsertAll(tagsToCreate);
+        _tagsRepo.InsertAll(tagsToCreate);
 
         // Reload the database entries so they already have identifiers
-        existedTags = await _tagsRepo.Find(newTags, rootBooruTag.Id);
+        existedTags = _tagsRepo.Find(newTags, rootBooruTag.Id);
         result.TryAddAll(existedTags);
 
         return result;

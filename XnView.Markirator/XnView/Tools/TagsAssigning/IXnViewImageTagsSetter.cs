@@ -7,5 +7,5 @@ namespace XnView.Markirator.App.XnView.Tools.TagsAssigning;
 /// </summary>
 internal interface IXnViewImageTagsSetter
 {
-    Task SetTags(IEnumerable<AssignImageTagsInfo> fileInfoArr);
+    void SetTags(IEnumerable<AssignImageTagsInfo> fileInfoArr);
 }

@@ -19,22 +19,22 @@ internal class XnViewFoldersFiller : IXnViewFoldersFiller
         _xnViewFoldersRepository = xnViewFoldersRepository ?? throw new ArgumentNullException(nameof(xnViewFoldersRepository));
     }
 
-    public Task FillFolders(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    public void FillFolders(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
-        return ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
             () => Action(fileInfoArr),
             "Fill XnView folders info");
     }
 
-    private async Task Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
+    private void Action(IEnumerable<AssignImageTagsInfo> fileInfoArr)
     {
         int unprocessedFoldersCounter = 0;
 
         var xnViewFolderPathList = fileInfoArr.Select(x => x.XnViewFolderPath).ToHashSet();
 
         // Find all needed entries from the Folders table in XnView
-        var folders = await _xnViewFoldersRepository.Find(xnViewFolderPathList);
+        var folders = _xnViewFoldersRepository.Find(xnViewFolderPathList);
 
         var foldersDict = folders.ToDictionary(x => x.FolderPath);
 

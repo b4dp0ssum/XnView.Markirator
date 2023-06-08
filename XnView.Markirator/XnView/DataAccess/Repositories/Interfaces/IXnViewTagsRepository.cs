@@ -4,9 +4,9 @@ namespace XnView.Markirator.App.XnView.DataAccess.Repositories.Interfaces;
 
 internal interface IXnViewTagsRepository
 {
-    Task Create(XnViewTag newTag);
-    Task InsertAll(IEnumerable<XnViewTag> newTags);
-    Task<XnViewTag[]> Find(IEnumerable<string> labels, int parentId);
-    Task<XnViewTag?> Find(string label, int parentId);
-    Task<int> GetMaxGroupPosition(int parentId);
+    void Create(XnViewTag newTag);
+    void InsertAll(IEnumerable<XnViewTag> newTags);
+    XnViewTag[] Find(IEnumerable<string> labels, int parentId);
+    XnViewTag? Find(string label, int parentId);
+    int GetMaxGroupPosition(int parentId);
 }

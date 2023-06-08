@@ -10,15 +10,15 @@ internal class JsonFileManager : IJsonFileManager
         return JsonSerializer.Deserialize<T>(json);
     }
 
-    public async Task WriteJson<T>(string filePath, T data)
+    public void WriteJson<T>(string filePath, T data)
     {
         string? dir = Path.GetDirectoryName(filePath);
         
         if (dir is not null)
             Directory.CreateDirectory(dir);
         
-        using FileStream openStream = File.OpenWrite(filePath);        
-        await JsonSerializer.SerializeAsync(openStream, data);
+        string jsonString = JsonSerializer.Serialize(data);
+        File.WriteAllText(filePath, jsonString);
     }
 
     public bool IsDirectory(string path)

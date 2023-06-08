@@ -16,11 +16,11 @@ internal class DeepDanbooruLauncher : IDeepDanbooruLauncher
         _outputWriter = outputWriter ?? throw new ArgumentNullException(nameof(outputWriter));
     }
 
-    public async Task<ImageTagsInfo[]> Evaluate(string imagePath, string projectPath, string additionalArgs)
+    public ImageTagsInfo[] Evaluate(string imagePath, string projectPath, string additionalArgs)
     {
         ImageTagsInfo[]? result = null;
 
-        await ActionsHandlingExtensions.HandleAction(
+        ActionsHandlingExtensions.HandleAction(
             _outputWriter,
             () => Task.FromResult(result = Action(imagePath, projectPath, additionalArgs)),
             "Evaluating tags by DeepDanbooru");

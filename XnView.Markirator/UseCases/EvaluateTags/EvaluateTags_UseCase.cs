@@ -28,26 +28,26 @@ internal class EvaluateTags_UseCase : UseCase<EvaluateTags_Options, ResultInfo>,
         _jsonFileManager = jsonFileManager ?? throw new ArgumentNullException(nameof(jsonFileManager));
     }
 
-    protected override async Task<ResultInfo> Handle(EvaluateTags_Options input)
+    protected override ResultInfo Handle(EvaluateTags_Options input)
     {
         string imagePath = (input.ImagePath ?? _deepDanbooruSettings.ImagePath)!;
         string projectPath = (input.ProjectPath ?? _deepDanbooruSettings.ProjectPath)!;
         string additionalArgs = _deepDanbooruSettings.AdditionalArgs!;
-        var imageTagsInfoArr = await _deepDanbooruLauncher.Evaluate(imagePath, projectPath, additionalArgs);
+        var imageTagsInfoArr = _deepDanbooruLauncher.Evaluate(imagePath, projectPath, additionalArgs);
 
         string imageTagInfoFilePath = GetImageTagInfoFilePath();
-        await _jsonFileManager.WriteJson(imageTagInfoFilePath, imageTagsInfoArr);
+        _jsonFileManager.WriteJson(imageTagInfoFilePath, imageTagsInfoArr);
 
         return new ResultInfo();
     }
 
-    private static string GetImageTagInfoFilePath()
+    private static string GetImageTagInfoFilePath(string imagePath)
     {
         string[] pathRoute = new string[]
         {
              AppDomain.CurrentDomain.BaseDirectory,
              "EvaluatedTags",
-             $"Tags_{DateTime.Now:yyyy-dd-M_HH-mm-ss}.json"
+             $"{Path.GetDirectoryName(imagePath)}_{DateTime.Now:yyyy-dd-M_HH-mm-ss}.json"
         };
         return Path.Combine(pathRoute);
     }

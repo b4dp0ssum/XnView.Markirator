@@ -35,12 +35,12 @@ internal class JsonImportTags_UseCase : BaseAssignTags_UseCase<JsonImportTags_Op
     {
     }
 
-    protected override Task<ImageTagsInfo[]> LoadImageTagsInfo(JsonImportTags_Options input)
+    protected override ImageTagsInfo[] LoadImageTagsInfo(JsonImportTags_Options input)
     {
         var json = File.ReadAllText(input.JsonPath!);
         var imageTagsInfoArr = JsonSerializer.Deserialize<ImageTagsInfo[]>(json);
         _outputWriter.Writeline($"Number of images found: {imageTagsInfoArr?.Length}");
 
-        return Task.FromResult(imageTagsInfoArr)!;
+        return imageTagsInfoArr!;
     }
 }

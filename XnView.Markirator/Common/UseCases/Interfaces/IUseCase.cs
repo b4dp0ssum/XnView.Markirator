@@ -2,7 +2,7 @@
 
 internal interface IUseCase<TInput> : IUseCase<TInput, ResultInfo>
 {
-    Task<ResultInfo> Execute(TInput input);
+    ResultInfo Execute(TInput input);
 }
 
 internal interface IUseCase<TInput, TResult>
