@@ -12,7 +12,7 @@ XnView.Markirator.App evaluate --path "D:\Images\Catalog\image1.jpg" --project "
 You can choose not to specify parameters if their values are prescribed in the application configuration.
 
 * `import`: The command to import categories (tags) into a stack of images in [XnView]. You can use a file created by the `evaluate` command or create one manually.
-	* `--path`: _[required]_ Path to JSON with tags info
+	* `--path`: _[optional]_ path to JSON with tags info. If no argument is given, all JSON files in the EvaluatedTags folder are processed.
 ```sh
 XnView.Markirator.App import --path "C:\Apps\XnView.Markirator\EvaluatedTags\Tags_2023-04-6_03-56-28.json" 
 ```

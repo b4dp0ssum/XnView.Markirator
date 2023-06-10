@@ -13,10 +13,10 @@ internal class JsonFileManager : IJsonFileManager
     public void WriteJson<T>(string filePath, T data)
     {
         string? dir = Path.GetDirectoryName(filePath);
-        
+
         if (dir is not null)
             Directory.CreateDirectory(dir);
-        
+
         string jsonString = JsonSerializer.Serialize(data);
         File.WriteAllText(filePath, jsonString);
     }
@@ -25,5 +25,17 @@ internal class JsonFileManager : IJsonFileManager
     {
         FileAttributes attr = File.GetAttributes(path);
         return attr.HasFlag(FileAttributes.Directory);
+    }
+
+    public string[] FindJson(string path)
+    {
+        if (this.IsDirectory(path))
+        {
+            return Directory.GetFiles(path, "*.json");
+        }
+        else
+        {
+            return new string[] { path };
+        }
     }
 }

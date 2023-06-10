@@ -35,6 +35,8 @@ internal class DeepDanbooruLauncher : IDeepDanbooruLauncher
         var fileInfoArr = new List<ImageTagsInfo>();
         ImageTagsInfo? currentFileInfo = null;
 
+        int i = 0;
+
         while (!process.StandardOutput.EndOfStream)
         {
             string line = process.StandardOutput.ReadLine() ?? string.Empty;
@@ -44,7 +46,7 @@ internal class DeepDanbooruLauncher : IDeepDanbooruLauncher
             {
                 if (currentFileInfo != null)
                 {
-                    this.LogFileInfo(currentFileInfo);
+                    this.LogFileInfo(currentFileInfo, i++);
                     fileInfoArr.Add(currentFileInfo);
                 }
                 currentFileInfo = new ImageTagsInfo(filePath!);
@@ -64,8 +66,8 @@ internal class DeepDanbooruLauncher : IDeepDanbooruLauncher
         if (currentFileInfo is not null && !fileInfoArr.Contains(currentFileInfo))
         {
             fileInfoArr.Add(currentFileInfo);
-            this.LogFileInfo(currentFileInfo);
-        }            
+            this.LogFileInfo(currentFileInfo, i++);
+        }
 
         return fileInfoArr.ToArray();
     }
@@ -100,6 +102,6 @@ internal class DeepDanbooruLauncher : IDeepDanbooruLauncher
         return sb.ToString();
     }
 
-    private void LogFileInfo(ImageTagsInfo fileInfo) 
-        => _outputWriter.Writeline($"{fileInfo.FilePath} [Categories: {fileInfo.Tags.Count}]");
+    private void LogFileInfo(ImageTagsInfo fileInfo, int i)
+        => _outputWriter.Writeline($"[{i}] {fileInfo.FilePath} [Categories: {fileInfo.Tags.Count}]");
 }

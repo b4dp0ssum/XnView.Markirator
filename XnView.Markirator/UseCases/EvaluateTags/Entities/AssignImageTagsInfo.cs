@@ -27,9 +27,9 @@ internal class AssignImageTagsInfo
     {
         string? xnViewFolderPath = PathExtensions.GetXnViewFolderPath(taggedImageInfo.FilePath, imagesCatalogPath);
 
-        if (xnViewFolderPath is null) 
+        if (xnViewFolderPath is null)
         {
-            string errMsg = 
+            string errMsg =
                 $"Failed to identify the file directory for XnView: {taggedImageInfo.FilePath}. " +
                 $"Please make sure the directory has been indexed (just open it in XnView)";
             throw new ApplicationException(errMsg);

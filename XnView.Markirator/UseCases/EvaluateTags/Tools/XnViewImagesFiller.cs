@@ -51,13 +51,17 @@ internal class XnViewImagesFiller : IXnViewImagesFiller
             int xnViewFolderId = fileInfo.XnViewFolder!.Id;
             string xnViewImagePath = fileInfo.TaggedImageInfo.GetImagePath();
 
-            if (groupedXnViewImages[xnViewFolderId].ContainsKey(xnViewImagePath))
-                fileInfo.XnViewImage = groupedXnViewImages[xnViewFolderId][xnViewImagePath];
-            else
+            if (groupedXnViewImages.ContainsKey(xnViewFolderId))
             {
-                _outputWriter.Writeline($"WARNING: A file with an unindexed image is detected [{fileInfo.TaggedImageInfo.FilePath}]");
-                unprocessedImagesCounter++;
+                if (groupedXnViewImages[xnViewFolderId].ContainsKey(xnViewImagePath))
+                {
+                    fileInfo.XnViewImage = groupedXnViewImages[xnViewFolderId][xnViewImagePath];
+                    continue;
+                }
             }
+
+            _outputWriter.Writeline($"WARNING: A file with an unindexed image is detected [{fileInfo.TaggedImageInfo.FilePath}]");
+            unprocessedImagesCounter++;
         }
     }
 }

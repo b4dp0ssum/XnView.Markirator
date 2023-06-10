@@ -1,12 +1,12 @@
-﻿using XnView.Markirator.App.Common.Tools.OutputWriting;
-using XnView.Markirator.App.Common.UseCases.Interfaces;
+﻿using XnView.Markirator.App.Common.Entities;
+using XnView.Markirator.App.Common.Tools.OutputWriting;
 using XnView.Markirator.App.Common.UseCases;
+using XnView.Markirator.App.Common.UseCases.Interfaces;
+using XnView.Markirator.App.UseCases.EvaluateTags.Entities;
+using XnView.Markirator.App.UseCases.EvaluateTags.Tools.Interfaces;
 using XnView.Markirator.App.XnView.Settings;
 using XnView.Markirator.App.XnView.Tools.TagsActualization;
 using XnView.Markirator.App.XnView.Tools.TagsAssigning;
-using XnView.Markirator.App.Common.Entities;
-using XnView.Markirator.App.UseCases.EvaluateTags.Tools.Interfaces;
-using XnView.Markirator.App.UseCases.EvaluateTags.Entities;
 
 namespace XnView.Markirator.App.UseCases.Common;
 

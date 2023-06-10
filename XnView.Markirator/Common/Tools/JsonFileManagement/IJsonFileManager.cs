@@ -4,6 +4,7 @@
     {
         T? ReadJson<T>(string filePath);
         void WriteJson<T>(string filePath, T data);
-        bool IsDirectory(string path);  
+        bool IsDirectory(string path);
+        string[] FindJson(string path);
     }
 }

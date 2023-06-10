@@ -1,5 +1,4 @@
-﻿using LinqToDB;
-using XnView.Markirator.App.XnView.DataAccess.Repositories.Interfaces;
+﻿using XnView.Markirator.App.XnView.DataAccess.Repositories.Interfaces;
 using XnView.Markirator.App.XnView.Entities;
 
 namespace XnView.Markirator.App.XnView.DataAccess.Repositories;

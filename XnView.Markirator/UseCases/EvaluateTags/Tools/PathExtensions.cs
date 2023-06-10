@@ -8,6 +8,8 @@ internal static class PathExtensions
 
     public static char XnViewPathSeparator = '/';
 
+    public const string EvaluatedTagsFolderName = "EvaluatedTags";
+
     public static string PrepareDeepbooruPath(string filePath)
     {
         return filePath.Replace(DeepbooruPathSeparator, XnViewPathSeparator);
@@ -47,4 +49,7 @@ internal static class PathExtensions
 
         return null;
     }
+
+    public static string GetEvaluatedTagsFolderPath()
+        => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EvaluatedTags");
 }

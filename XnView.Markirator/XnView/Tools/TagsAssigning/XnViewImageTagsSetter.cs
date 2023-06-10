@@ -43,8 +43,17 @@ internal class XnViewImageTagsSetter : IXnViewImageTagsSetter
                 continue;
             }
 
-            var existedTags = existedTagsDict.TryGetValue(fileInfo.XnViewImage!.Id, out var x)
-                ? x : new HashSet<int>();
+            int imageId = fileInfo.XnViewImage!.Id;
+            HashSet<int> existedTags;
+            if (existedTagsDict.ContainsKey(imageId))
+            {
+                existedTags = existedTagsDict[imageId];
+            }
+            else
+            {
+                existedTags = new HashSet<int>();
+                existedTagsDict.Add(imageId, existedTags);
+            }
 
             var tagLinksToCreate = fileInfo
                 .RequiredXnViewTags!
@@ -53,6 +62,7 @@ internal class XnViewImageTagsSetter : IXnViewImageTagsSetter
                 .ToArray();
 
             allTagLinksToCreate.AddRange(tagLinksToCreate);
+            AddToExistedTags(existedTags, tagLinksToCreate);
         }
 
         _db.BulkCopy(allTagLinksToCreate);
@@ -75,6 +85,17 @@ internal class XnViewImageTagsSetter : IXnViewImageTagsSetter
         return xnViewImageTagLinks
             .GroupBy(x => x.ImageId)
             .ToDictionary(x => x.Key, y => y.Select(link => link.TagId).ToHashSet());
+    }
+
+    private static void AddToExistedTags(
+        HashSet<int> existedTags,
+        XnViewImageTag[] xnViewImageTags)
+    {
+        var tagIds = xnViewImageTags.Select(x => x.TagId).ToArray();
+        foreach (var tagId in tagIds)
+        {
+            existedTags.Add(tagId);
+        }
     }
 
     private static XnViewImageTag BuildImageTagLink(AssignImageTagsInfo fileInfo, XnViewTag tag)
