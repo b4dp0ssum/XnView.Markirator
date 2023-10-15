@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XnView.Markirator.App", "XnView.Markirator\XnView.Markirator.App.csproj", "{8C09EF97-FAC4-4F1C-AE40-7883FE71B577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XnView.Markirator.UI", "XnView.Markirator.UI\XnView.Markirator.UI.csproj", "{8B53953C-93C2-496B-A4D2-125A2155CBDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XnView.Markirator.Core", "XnView.Markirator.Core\XnView.Markirator.Core.csproj", "{EDC1498C-3BCF-4278-9BFA-DF6004002C67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8C09EF97-FAC4-4F1C-AE40-7883FE71B577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C09EF97-FAC4-4F1C-AE40-7883FE71B577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C09EF97-FAC4-4F1C-AE40-7883FE71B577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B53953C-93C2-496B-A4D2-125A2155CBDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B53953C-93C2-496B-A4D2-125A2155CBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B53953C-93C2-496B-A4D2-125A2155CBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B53953C-93C2-496B-A4D2-125A2155CBDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC1498C-3BCF-4278-9BFA-DF6004002C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC1498C-3BCF-4278-9BFA-DF6004002C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC1498C-3BCF-4278-9BFA-DF6004002C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC1498C-3BCF-4278-9BFA-DF6004002C67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
