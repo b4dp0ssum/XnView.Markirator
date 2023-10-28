@@ -14,11 +14,13 @@ This is simple application that is designed to integrate [DeepDanbooru] *(image 
 ## How To Use
 
 1.  Evaluate tags
+
 ![scr_eval](docs/scr_eval.png)
 
 After successful execution of this action, a new JSON file (text file with information about processed images) will appear in the EvaluatedTags folder in the application directory.
 
 2.  Import tags to XnView
+
 ![scr_import](docs/scr_import.png)
 
 Select JSON file from previous step and start import tags.
