@@ -6,6 +6,8 @@ internal class DeepDanbooruInstaller : IDeepDanbooruInstaller
 {
     public void Install(string deepDanbooruPath)
     {
+        InstallPip();
+
         var startInfo = new ProcessStartInfo
         {
             FileName = "cmd.exe",
@@ -13,5 +15,17 @@ internal class DeepDanbooruInstaller : IDeepDanbooruInstaller
         };
         var process = new Process { StartInfo = startInfo };
         process.Start();
+    }
+
+    private void InstallPip()
+    {
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = "cmd.exe",
+            Arguments = @$"/c python -m ensurepip --upgrade",
+        };
+        var process = new Process { StartInfo = startInfo };
+        process.Start();
+        process.WaitForExit();
     }
 }

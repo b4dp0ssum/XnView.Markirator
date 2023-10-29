@@ -3,11 +3,12 @@ This is simple application that is designed to integrate [DeepDanbooru] *(image 
 ![scr_teaser](docs/scr_teaser.png)
 
 ## Installation
-1.  Install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ru/visual-cpp-build-tools/)
-2.  Install [Python](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)
-3.  Download and unzip the XnView.Markirator archive
-4.  Run XnView.Markirator.exe and install DeepDanbooru ("Settings" -> "Tags Evaluation" -> "Install DeepDanbooru"). Wait until the installation is complete (it may take a time).
-5.  Setup XnView settings
+1.  Install [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe) 
+2.  Install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/ru/visual-cpp-build-tools/)3
+3.  Install [Python](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)
+4.  Reboot PC
+5.  Run XnView.Markirator.exe and install DeepDanbooru ("Settings" -> "Tags Evaluation" -> "Install DeepDanbooru"). Wait until the installation is complete (it may take a time).
+6.  Setup XnView settings
 
 ![xn_view_settings](docs/xn_view_settings.png)
 

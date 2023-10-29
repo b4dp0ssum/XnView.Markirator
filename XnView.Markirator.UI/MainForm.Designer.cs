@@ -54,20 +54,24 @@
             installationTabPage = new TabPage();
             btSaveSettings = new Button();
             groupBox6 = new GroupBox();
+            label4 = new Label();
             btSelectXnViewImagesCatalogPath = new Button();
             txtXnViewImagesCatalogPath = new TextBox();
             groupBox4 = new GroupBox();
-            btSelectXnViewDb = new Button();
             txtXnViewDbFolder = new TextBox();
+            label6 = new Label();
+            btSelectXnViewDb = new Button();
             groupBox3 = new GroupBox();
+            label10 = new Label();
             btInstallDeepDanbooru = new Button();
             groupBox2 = new GroupBox();
+            label11 = new Label();
+            label9 = new Label();
+            linkLabel0 = new LinkLabel();
             label1 = new Label();
             linkLabel1 = new LinkLabel();
-            linkLabel3 = new LinkLabel();
-            label2 = new Label();
-            label3 = new Label();
             linkLabel2 = new LinkLabel();
+            label2 = new Label();
             aboutPage = new TabPage();
             linkLabel6 = new LinkLabel();
             groupBox5 = new GroupBox();
@@ -79,8 +83,6 @@
             evaluationBgWorker = new System.ComponentModel.BackgroundWorker();
             statusStrip = new StatusStrip();
             lbProgress = new ToolStripStatusLabel();
-            label6 = new Label();
-            label4 = new Label();
             mainFormTabs.SuspendLayout();
             evaluationTabPage.SuspendLayout();
             groupImagesPath.SuspendLayout();
@@ -114,7 +116,7 @@
             mainFormTabs.Location = new Point(12, 12);
             mainFormTabs.Name = "mainFormTabs";
             mainFormTabs.SelectedIndex = 0;
-            mainFormTabs.Size = new Size(425, 436);
+            mainFormTabs.Size = new Size(425, 444);
             mainFormTabs.TabIndex = 1;
             // 
             // evaluationTabPage
@@ -126,7 +128,7 @@
             evaluationTabPage.Location = new Point(4, 24);
             evaluationTabPage.Name = "evaluationTabPage";
             evaluationTabPage.Padding = new Padding(3);
-            evaluationTabPage.Size = new Size(417, 408);
+            evaluationTabPage.Size = new Size(417, 416);
             evaluationTabPage.TabIndex = 0;
             evaluationTabPage.Text = "Evaluation";
             evaluationTabPage.UseVisualStyleBackColor = true;
@@ -222,7 +224,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(417, 408);
+            tabPage2.Size = new Size(417, 416);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Import";
             tabPage2.UseVisualStyleBackColor = true;
@@ -278,7 +280,7 @@
             outputTabPage.Location = new Point(4, 24);
             outputTabPage.Name = "outputTabPage";
             outputTabPage.Padding = new Padding(3);
-            outputTabPage.Size = new Size(417, 408);
+            outputTabPage.Size = new Size(417, 416);
             outputTabPage.TabIndex = 2;
             outputTabPage.Text = "Output";
             outputTabPage.UseVisualStyleBackColor = true;
@@ -298,8 +300,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(groupBox1);
-            splitContainer1.Size = new Size(411, 402);
-            splitContainer1.SplitterDistance = 291;
+            splitContainer1.Size = new Size(411, 410);
+            splitContainer1.SplitterDistance = 296;
             splitContainer1.TabIndex = 1;
             // 
             // listViewOutput
@@ -312,7 +314,7 @@
             listViewOutput.Margin = new Padding(3, 2, 3, 2);
             listViewOutput.Name = "listViewOutput";
             listViewOutput.ShowGroups = false;
-            listViewOutput.Size = new Size(411, 291);
+            listViewOutput.Size = new Size(411, 296);
             listViewOutput.TabIndex = 0;
             listViewOutput.UseCompatibleStateImageBehavior = false;
             listViewOutput.View = View.Details;
@@ -334,7 +336,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(411, 107);
+            groupBox1.Size = new Size(411, 110);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Description";
@@ -347,7 +349,7 @@
             txtOutputEntry.Multiline = true;
             txtOutputEntry.Name = "txtOutputEntry";
             txtOutputEntry.ScrollBars = ScrollBars.Vertical;
-            txtOutputEntry.Size = new Size(405, 85);
+            txtOutputEntry.Size = new Size(405, 88);
             txtOutputEntry.TabIndex = 0;
             // 
             // installationTabPage
@@ -362,7 +364,7 @@
             installationTabPage.Margin = new Padding(3, 2, 3, 2);
             installationTabPage.Name = "installationTabPage";
             installationTabPage.Padding = new Padding(3, 2, 3, 2);
-            installationTabPage.Size = new Size(417, 408);
+            installationTabPage.Size = new Size(417, 416);
             installationTabPage.TabIndex = 3;
             installationTabPage.Text = "Settings";
             installationTabPage.UseVisualStyleBackColor = true;
@@ -372,7 +374,7 @@
             btSaveSettings.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btSaveSettings.ImageKey = "disk-black.png";
             btSaveSettings.ImageList = mainImagesList;
-            btSaveSettings.Location = new Point(6, 336);
+            btSaveSettings.Location = new Point(6, 386);
             btSaveSettings.Name = "btSaveSettings";
             btSaveSettings.Size = new Size(405, 24);
             btSaveSettings.TabIndex = 1;
@@ -388,12 +390,22 @@
             groupBox6.Controls.Add(label4);
             groupBox6.Controls.Add(btSelectXnViewImagesCatalogPath);
             groupBox6.Controls.Add(txtXnViewImagesCatalogPath);
-            groupBox6.Location = new Point(6, 260);
+            groupBox6.Location = new Point(6, 310);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(405, 70);
             groupBox6.TabIndex = 12;
             groupBox6.TabStop = false;
             groupBox6.Text = "Base path of your pictures";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label4.Location = new Point(6, 48);
+            label4.Name = "label4";
+            label4.Size = new Size(229, 15);
+            label4.TabIndex = 9;
+            label4.Text = "XnView -> Settings -> Browser -> Catalog";
             // 
             // btSelectXnViewImagesCatalogPath
             // 
@@ -422,12 +434,30 @@
             groupBox4.Controls.Add(txtXnViewDbFolder);
             groupBox4.Controls.Add(label6);
             groupBox4.Controls.Add(btSelectXnViewDb);
-            groupBox4.Location = new Point(6, 184);
+            groupBox4.Location = new Point(6, 234);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(405, 70);
             groupBox4.TabIndex = 11;
             groupBox4.TabStop = false;
             groupBox4.Text = "Folder for Catalog";
+            // 
+            // txtXnViewDbFolder
+            // 
+            txtXnViewDbFolder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtXnViewDbFolder.Location = new Point(6, 22);
+            txtXnViewDbFolder.Name = "txtXnViewDbFolder";
+            txtXnViewDbFolder.Size = new Size(363, 23);
+            txtXnViewDbFolder.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label6.Location = new Point(6, 48);
+            label6.Name = "label6";
+            label6.Size = new Size(250, 15);
+            label6.TabIndex = 8;
+            label6.Text = "XnView -> Settings -> Paths -> Other settings";
             // 
             // btSelectXnViewDb
             // 
@@ -441,24 +471,27 @@
             btSelectXnViewDb.UseVisualStyleBackColor = true;
             btSelectXnViewDb.Click += BtSelectXnViewDb_Click;
             // 
-            // txtXnViewDbFolder
-            // 
-            txtXnViewDbFolder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtXnViewDbFolder.Location = new Point(6, 22);
-            txtXnViewDbFolder.Name = "txtXnViewDbFolder";
-            txtXnViewDbFolder.Size = new Size(363, 23);
-            txtXnViewDbFolder.TabIndex = 0;
-            // 
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(btInstallDeepDanbooru);
-            groupBox3.Location = new Point(6, 128);
+            groupBox3.Location = new Point(6, 160);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(405, 50);
+            groupBox3.Size = new Size(405, 68);
             groupBox3.TabIndex = 10;
             groupBox3.TabStop = false;
             groupBox3.Text = "Tags Evaluation";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label10.Location = new Point(6, 45);
+            label10.Name = "label10";
+            label10.Size = new Size(318, 15);
+            label10.TabIndex = 10;
+            label10.Text = "WARNING! Don't forget to reboot your PC after installation.";
             // 
             // btInstallDeepDanbooru
             // 
@@ -474,75 +507,89 @@
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(linkLabel0);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(linkLabel1);
-            groupBox2.Controls.Add(linkLabel3);
-            groupBox2.Controls.Add(label2);
-            groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(linkLabel2);
+            groupBox2.Controls.Add(label2);
             groupBox2.Location = new Point(6, 5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(405, 117);
+            groupBox2.Size = new Size(405, 149);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Required components";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label11.Location = new Point(6, 127);
+            label11.Name = "label11";
+            label11.Size = new Size(318, 15);
+            label11.TabIndex = 11;
+            label11.Text = "WARNING! Don't forget to reboot your PC after installation.";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 19);
+            label9.Name = "label9";
+            label9.Size = new Size(214, 15);
+            label9.TabIndex = 8;
+            label9.Text = "1) Microsoft Visual C++ Redistributable";
+            // 
+            // linkLabel0
+            // 
+            linkLabel0.AutoSize = true;
+            linkLabel0.Location = new Point(6, 33);
+            linkLabel0.Name = "linkLabel0";
+            linkLabel0.Size = new Size(251, 15);
+            linkLabel0.TabIndex = 9;
+            linkLabel0.TabStop = true;
+            linkLabel0.Text = "https://aka.ms/vs/17/release/vc_redist.x64.exe";
+            linkLabel0.LinkClicked += LinkLabel0_LinkClicked;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 19);
+            label1.Location = new Point(6, 54);
             label1.Name = "label1";
             label1.Size = new Size(158, 15);
             label1.TabIndex = 1;
-            label1.Text = "1) Microsoft C++ Build Tools";
+            label1.Text = "2) Microsoft C++ Build Tools";
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(6, 33);
+            linkLabel1.Location = new Point(6, 68);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(335, 15);
             linkLabel1.TabIndex = 3;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "https://visualstudio.microsoft.com/ru/visual-cpp-build-tools/";
-            // 
-            // linkLabel3
-            // 
-            linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(6, 93);
-            linkLabel3.Name = "linkLabel3";
-            linkLabel3.Size = new Size(374, 15);
-            linkLabel3.TabIndex = 7;
-            linkLabel3.TabStop = true;
-            linkLabel3.Text = "https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 49);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 4;
-            label2.Text = "2) Python";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 79);
-            label3.Name = "label3";
-            label3.Size = new Size(105, 15);
-            label3.TabIndex = 6;
-            label3.Text = "or from direct link:";
+            linkLabel1.LinkClicked += LinkLabel1_LinkClicked;
             // 
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(6, 63);
+            linkLabel2.Location = new Point(6, 104);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(256, 15);
-            linkLabel2.TabIndex = 5;
+            linkLabel2.Size = new Size(374, 15);
+            linkLabel2.TabIndex = 7;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "https://www.python.org/downloads/windows/";
+            linkLabel2.Text = "https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe";
+            linkLabel2.LinkClicked += LinkLabel3_LinkClicked;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 15);
+            label2.TabIndex = 4;
+            label2.Text = "3) Python";
             // 
             // aboutPage
             // 
@@ -553,7 +600,7 @@
             aboutPage.Location = new Point(4, 24);
             aboutPage.Name = "aboutPage";
             aboutPage.Padding = new Padding(3);
-            aboutPage.Size = new Size(417, 408);
+            aboutPage.Size = new Size(417, 416);
             aboutPage.TabIndex = 4;
             aboutPage.Text = "About";
             aboutPage.UseVisualStyleBackColor = true;
@@ -637,7 +684,7 @@
             // statusStrip
             // 
             statusStrip.Items.AddRange(new ToolStripItem[] { lbProgress });
-            statusStrip.Location = new Point(0, 451);
+            statusStrip.Location = new Point(0, 459);
             statusStrip.Name = "statusStrip";
             statusStrip.Size = new Size(449, 22);
             statusStrip.TabIndex = 2;
@@ -649,31 +696,11 @@
             lbProgress.Size = new Size(83, 17);
             lbProgress.Text = "lbProgressText";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            label6.Location = new Point(6, 48);
-            label6.Name = "label6";
-            label6.Size = new Size(250, 15);
-            label6.TabIndex = 8;
-            label6.Text = "XnView -> Settings -> Paths -> Other settings";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            label4.Location = new Point(6, 48);
-            label4.Name = "label4";
-            label4.Size = new Size(229, 15);
-            label4.TabIndex = 9;
-            label4.Text = "XnView -> Settings -> Browser -> Catalog";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(449, 473);
+            ClientSize = new Size(449, 481);
             Controls.Add(statusStrip);
             Controls.Add(mainFormTabs);
             Name = "MainForm";
@@ -698,6 +725,7 @@
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             aboutPage.ResumeLayout(false);
@@ -723,8 +751,6 @@
         private TabPage installationTabPage;
         private Button btInstallDeepDanbooru;
         private Label label1;
-        private LinkLabel linkLabel3;
-        private Label label3;
         private LinkLabel linkLabel2;
         private Label label2;
         private LinkLabel linkLabel1;
@@ -762,5 +788,9 @@
         private Button btSelectXnViewDb;
         private Label label4;
         private Label label6;
+        private Label label10;
+        private Label label11;
+        private Label label9;
+        private LinkLabel linkLabel0;
     }
 }

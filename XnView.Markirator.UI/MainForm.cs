@@ -8,6 +8,8 @@ using XnView.Markirator.Core.UseCases.UpdateSettings;
 using XnView.Markirator.UI.Tools.OutputWriting;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.ComponentModel;
+using System.Diagnostics;
+using XnView.Markirator.UI.Tools.Extensions;
 
 namespace XnView.Markirator.UI
 {
@@ -108,25 +110,25 @@ namespace XnView.Markirator.UI
                 {
                     var settings = _markiratorService.GetSettings(new GetSettings_Options());
 
-                    bool checkXnViewDbFolder = 
-                        !string.IsNullOrEmpty(settings.XnViewDbFolder) && 
+                    bool checkXnViewDbFolder =
+                        !string.IsNullOrEmpty(settings.XnViewDbFolder) &&
                         File.Exists(settings.XnViewDbFolder);
-                    
+
                     if (!checkXnViewDbFolder)
                     {
                         throw new ApplicationException(
                             "Check that the \"Folder for Catalog\" setting filled correctly");
                     }
 
-                    bool checkXnViewImagesCatalogPath = 
-                        !string.IsNullOrEmpty(settings.XnViewImagesCatalogPath) && 
+                    bool checkXnViewImagesCatalogPath =
+                        !string.IsNullOrEmpty(settings.XnViewImagesCatalogPath) &&
                         File.Exists(settings.XnViewDbFolder);
 
                     if (!checkXnViewImagesCatalogPath)
                     {
                         throw new ApplicationException(
                             "Check that the \"Base path of your pictures\" setting filled correctly");
-                    }                    
+                    }
                 }
 
                 var options = new JsonImportTags_Options()
@@ -256,5 +258,19 @@ namespace XnView.Markirator.UI
             _markiratorService.UpdateSettings(options);
             lbProgress.Text = String.Empty;
         }
+
+        // --- LINKS ---
+
+        private void LinkLabel0_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            => ProcessExtensions.LaunchBrowser(linkLabel0.Text);
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            => ProcessExtensions.LaunchBrowser(linkLabel1.Text);
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            => ProcessExtensions.LaunchBrowser(linkLabel2.Text);
+
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            => ProcessExtensions.LaunchBrowser(linkLabel2.Text);
     }
 }
