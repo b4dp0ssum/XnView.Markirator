@@ -48,6 +48,7 @@ namespace XnView.Markirator.UI
                 txtXnViewDbFolder.Text = settings.XnViewDbFolder;
                 txtXnViewImagesCatalogPath.Text = settings.XnViewImagesCatalogPath;
                 lbProgress.Text = String.Empty;
+                txtImportTagsFile.Text = settings.EvaluatedTagsFolderPath;
             }
         }
 
@@ -79,12 +80,30 @@ namespace XnView.Markirator.UI
                 AppDomain.CurrentDomain.BaseDirectory,
                 "deepdanbooru-v3-20211112-sgd-e28");
 
-            var options = new EvaluateTags_Options()
+            string imagePath = txtImagePath.Text;
+
+            if (FilesExtensions.IsDirectory(imagePath) && !FilesExtensions.DirectoryContainsImages(imagePath))
             {
-                ImagePath = txtImagePath.Text,
-                ProjectPath = projectPath,
-            };
-            _markiratorService.EvaluateTags(options);
+                var subfolders = FilesExtensions.GetSubFolders(imagePath);
+                foreach (var subfolder in subfolders) 
+                {
+                    var options = new EvaluateTags_Options()
+                    {
+                        ImagePath = subfolder,
+                        ProjectPath = projectPath,
+                    };
+                    _markiratorService.EvaluateTags(options);
+                }
+            }
+            else
+            {
+                var options = new EvaluateTags_Options()
+                {
+                    ImagePath = imagePath,
+                    ProjectPath = projectPath,
+                };
+                _markiratorService.EvaluateTags(options);
+            }            
         }
 
         private void BtStartEvaluation_Click(object sender, EventArgs e)
@@ -112,7 +131,7 @@ namespace XnView.Markirator.UI
 
                     bool checkXnViewDbFolder =
                         !string.IsNullOrEmpty(settings.XnViewDbFolder) &&
-                        File.Exists(settings.XnViewDbFolder);
+                        Directory.Exists(settings.XnViewDbFolder);
 
                     if (!checkXnViewDbFolder)
                     {
@@ -122,7 +141,7 @@ namespace XnView.Markirator.UI
 
                     bool checkXnViewImagesCatalogPath =
                         !string.IsNullOrEmpty(settings.XnViewImagesCatalogPath) &&
-                        File.Exists(settings.XnViewDbFolder);
+                        Directory.Exists(settings.XnViewDbFolder);
 
                     if (!checkXnViewImagesCatalogPath)
                     {
@@ -131,11 +150,28 @@ namespace XnView.Markirator.UI
                     }
                 }
 
-                var options = new JsonImportTags_Options()
+                string jsonImportFilePath = txtImportTagsFile.Text;
+
+                if (FilesExtensions.IsDirectory(jsonImportFilePath))
                 {
-                    JsonPath = txtImportTagsFile.Text,
-                };
-                _markiratorService.JsonImportTags(options);
+                    var files = FilesExtensions.GetAllJsonFilesInFolder(jsonImportFilePath);
+                    foreach (var file in files)
+                    {
+                        var options = new JsonImportTags_Options()
+                        {
+                            JsonPath = file,
+                        };
+                        _markiratorService.JsonImportTags(options);
+                    }
+                }
+                else 
+                {
+                    var options = new JsonImportTags_Options()
+                    {
+                        JsonPath = txtImportTagsFile.Text,
+                    };
+                    _markiratorService.JsonImportTags(options);
+                }
             }
             catch (ApplicationException ex)
             {

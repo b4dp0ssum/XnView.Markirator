@@ -1,4 +1,5 @@
-﻿using XnView.Markirator.Core.Common.Tools.JsonFileManagement;
+﻿using System.IO;
+using XnView.Markirator.Core.Common.Tools.JsonFileManagement;
 using XnView.Markirator.Core.Common.Tools.OutputWriting;
 using XnView.Markirator.Core.Common.UseCases;
 using XnView.Markirator.Core.Common.UseCases.Interfaces;
@@ -49,10 +50,15 @@ internal class EvaluateTags_UseCase : UseCase<EvaluateTags_Options, ResultInfo>,
 
     private static string GetImageTagInfoFilePath(string imagePath)
     {
+        string? targetName = 
+            Directory.Exists(imagePath) 
+            ? Path.GetFileName(imagePath) 
+            : Path.GetFileName(Path.GetDirectoryName(imagePath));
+
         string[] pathRoute = new string[]
         {
              PathExtensions.GetEvaluatedTagsFolderPath(),
-             $"{Path.GetFileName(Path.GetDirectoryName(imagePath))}_{DateTime.Now:yyyy-dd-M_HH-mm-ss}.json"
+             $"{targetName}_{DateTime.Now:yyyy-dd-M_HH-mm-ss}.json"
         };
         return Path.Combine(pathRoute);
     }

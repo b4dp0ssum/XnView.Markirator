@@ -51,5 +51,5 @@ internal static class PathExtensions
     }
 
     public static string GetEvaluatedTagsFolderPath()
-        => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EvaluatedTags");
+        => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, EvaluatedTagsFolderName);
 }
